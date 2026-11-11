@@ -1,0 +1,59 @@
+PROBLEM 2.A1 - INDIRECT OWNERSHIP AND THE NEUMANN SERIES
+
+Notation
+--------
+M_ij is the fraction of company j held directly by company i. The matrix power
+M^r records ownership paths of length r, with the usual matrix multiplication
+summing the contributions of paths through intermediate companies. Total
+ownership excluding the direct identity term is:
+
+    T = M + M^2 + M^3 + ...
+
+Proof of the inverse formula
+----------------------------
+Define the finite partial sum:
+
+    S_N = I + M + M^2 + ... + M^N
+
+Multiplying by (I - M) gives a telescoping sum:
+
+    S_N (I - M) = I - M^(N+1)
+
+If the matrix geometric series converges, then M^(N+1) tends to the zero
+matrix. Taking the limit yields:
+
+    S (I - M) = I
+    S = (I - M)^(-1)
+
+Since T excludes the identity term:
+
+    T = S - I = (I - M)^(-1) - I
+
+Convergence condition
+---------------------
+For a finite square matrix, the Neumann series sum_{r=0}^infinity M^r
+converges if and only if the spectral radius satisfies:
+
+    rho(M) = max_i |lambda_i(M)| < 1
+
+Real-world interpretation
+-------------------------
+An ownership matrix is non-negative. If every company is at most 100% owned by
+the set of companies represented in the matrix, its columns have sums at most
+one. This makes the matrix column-substochastic and implies rho(M) <= 1.
+Strict convergence requires that there is no closed ownership component with
+no leakage to shareholders outside the represented network; in particular,
+each strongly connected closed component must have some ownership leakage.
+Public float, individuals, government, or entities omitted from the registry
+often provide such leakage. This is a practical reason convergence is common,
+not a guarantee: a fully owned closed cycle can have rho(M) = 1 and must be
+handled explicitly.
+
+Assessment matrix check
+-----------------------
+For the given four-company matrix, the non-zero 3-by-3 ownership block contains
+the cycle A -> B -> C -> A with product 0.6 * 0.5 * 0.2 = 0.06. The computed
+spectral radius is approximately 0.3915, which is less than one, so the series
+converges. The hand calculation and NumPy calculation of T are shown in
+src/q2/1_ownership_pca.ipynb. They give A's total ownership of D as
+0.22 / 0.94 = 0.2340, or 23.40%.

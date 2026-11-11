@@ -1,0 +1,26 @@
+# Core scientific & numerical libraries
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.2
+
+# Visualization
+matplotlib==3.8.4
+seaborn==0.13.2
+
+# Machine Learning & Explainability
+scikit-learn==1.4.2
+lightgbm==4.3.0
+xgboost==2.0.3
+# catboost==1.2.5  # Excluded due to numpy compatibility issues
+shap==0.45.1
+optuna==3.6.1
+
+# Notebook & Environment
+jupyter==1.0.0
+notebook==7.1.3
+ipykernel==6.29.4
+tqdm==4.66.4
+
+# Optional: Validation & Network reference
+networkx==3.3
+

@@ -1,0 +1,45 @@
+PROBLEM 2.B1 - PCA AS A CONSTRAINED VARIANCE MAXIMIZATION
+
+Setup
+-----
+Let X be a centered n-by-p data matrix and let
+
+    S = X^T X / (n - 1)
+
+be its sample covariance matrix. For a unit direction w in R^p, the projected
+observations are z = Xw and their sample variance is:
+
+    Var(Xw) = z^T z / (n - 1)
+            = w^T X^T X w / (n - 1)
+            = w^T S w
+
+Optimization and Lagrange multiplier
+-------------------------------------
+We maximize w^T S w subject to w^T w = 1. Define:
+
+    L(w, lambda) = w^T S w - lambda (w^T w - 1)
+
+Because S is symmetric, differentiating with respect to w gives:
+
+    grad_w L = 2 S w - 2 lambda w = 0
+    S w = lambda w
+
+Thus every stationary direction is an eigenvector of S. Multiplying the
+eigenvalue equation by w^T and using w^T w = 1 gives:
+
+    w^T S w = lambda
+
+The variance is therefore the corresponding eigenvalue. The maximum is
+attained by an eigenvector associated with the largest eigenvalue of S. This
+direction is the first principal component.
+
+Further components
+------------------
+The second and subsequent principal directions are the eigenvectors associated
+with the next-largest eigenvalues, subject to orthogonality to the previous
+directions. The fraction of variance explained by the first k components is:
+
+    (lambda_1 + ... + lambda_k) / (lambda_1 + ... + lambda_p)
+
+The derivation, SVD relationship, and standardization example are also covered
+in src/q2/1_ownership_pca.ipynb.

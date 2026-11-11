@@ -1,0 +1,27 @@
+{
+  "selection_metric": "smallest feature set within one standard error of the highest mean 5-fold training ROC-AUC; ties use higher PR-AUC",
+  "best_cv_feature_set": "all_except_pay_ratio",
+  "best_cv_mean_roc_auc": 0.75488372062411,
+  "one_standard_error_cutoff": 0.7500216878285854,
+  "selected_feature_set": "core_plus_num_delays",
+  "selected_features": [
+    "PAY_0",
+    "PAY_2",
+    "PAY_3",
+    "PAY_4",
+    "PAY_5",
+    "PAY_6",
+    "LIMIT_BAL",
+    "BILL_AMT1",
+    "BILL_AMT6",
+    "PAY_AMT1",
+    "AGE",
+    "EDUCATION",
+    "SEX",
+    "NUM_DELAYS"
+  ],
+  "feature_count": 14,
+  "mean_roc_auc": 0.7547510348796993,
+  "mean_pr_auc": 0.5127603390759541,
+  "comparison_file": "feature_set_comparison.csv"
+}

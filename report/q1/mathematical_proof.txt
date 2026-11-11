@@ -1,0 +1,41 @@
+PROBLEM 1.1 - CIRCULAR SHAREHOLDING AND TOPOLOGICAL ORDER
+
+Definition
+-----------
+A circular shareholding cycle is a directed cycle of ownership edges. Equivalently,
+companies in a strongly connected component (SCC) can reach one another through
+ownership paths. A circular group is an SCC with at least two vertices, or a
+single vertex with a self-loop.
+
+Theorem
+-------
+A finite directed graph has no circular shareholding if and only if its vertices
+can be ordered so that every edge points from an earlier vertex to a later one.
+
+Proof: no circular shareholding implies a topological ordering
+---------------------------------------------------------------
+If there is no directed cycle, the graph is a DAG. Every finite non-empty DAG has
+a vertex with indegree zero: otherwise, repeatedly following an incoming edge
+must eventually revisit a vertex, creating a cycle.
+
+Choose a zero-indegree vertex first, remove it and its outgoing edges, and repeat.
+Removing a vertex cannot create a cycle, so the procedure can continue until all
+vertices are listed. For every edge u -> v, u must appear before v; otherwise v
+would have been chosen while u was still an incoming neighbour. This is a
+topological ordering.
+
+Proof: a topological ordering implies no circular shareholding
+---------------------------------------------------------------
+Suppose a directed cycle v_1 -> v_2 -> ... -> v_r -> v_1 existed. In a
+topological ordering, each edge requires the source to appear earlier than the
+destination. Therefore:
+
+    rank(v_1) < rank(v_2) < ... < rank(v_r) < rank(v_1)
+
+This is impossible. A self-loop also contradicts the required strict ordering.
+Thus no directed cycle, and hence no circular shareholding, exists.
+
+Conclusion
+----------
+The two properties are equivalent. A directed graph has a topological ordering
+exactly when it contains no circular shareholding cycle.
